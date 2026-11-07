@@ -8,7 +8,7 @@ const Contact = () => {
   const [search,setSearch] = useState('');
   const [query,setQuery] = useState('');
 
-  const submitHandler = (e) => {
+  const submitHandler = (e) =>{
     e.preventDefault();
     setQuery(search);
   }
@@ -18,8 +18,8 @@ const Contact = () => {
     try 
     {
       const response = await axios.delete(`http://localhost:3000/api/contacts/${id}`,{withCredentials:true });
-
-      setContacts(contacts.filter((contact) => contact._id !== id));
+      setContacts(contacts.filter((contact) =>contact._id!==id));
+      alert('Contact Delted');
     }
     catch(error) 
     {
@@ -56,7 +56,7 @@ const Contact = () => {
     <>
       <div className='px-6 py-6'>
         <form
-          onSubmit={(e) => {submitHandler()}}
+          onSubmit={submitHandler}
           className='flex mb-4'>
           <input
             type="text"
