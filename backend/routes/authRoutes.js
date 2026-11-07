@@ -37,8 +37,7 @@ authRouter.post("/register",async (req,res)=>{
             sameSite:"strict"
         })
         res.status(201).json({
-            message:"User Created",
-            token
+            message:"User Created"
         });
     }
     catch(error)
@@ -81,8 +80,7 @@ authRouter.post("/login", async (req,res)=>{
             });
 
             res.status(200).json({
-                message:"Logged In",
-                token
+                message:"Logged In"
             });
         }
         else 
@@ -110,7 +108,7 @@ authRouter.post("/logout", (req,res)=>{
     });
 });
 
-authRouter.get('/me', async (req, res) => {
+authRouter.get('/me', async (req, res) =>{
     try
     {
         const token = req.cookies.token;
@@ -131,7 +129,7 @@ authRouter.get('/me', async (req, res) => {
             })
         }
 
-        res.status(200).json({ user });
+        res.status(200).json({user});
     }
     catch(error)
     {

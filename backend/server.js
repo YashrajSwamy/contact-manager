@@ -19,15 +19,12 @@ app.use("/api/auth",authRouter);
 app.use("/api/contacts",authMiddleware,contactRouter);
 
 
-try 
-{
-  mongoose.connect(process.env.MONGO_URL);
-  console.log("MongoDB Connected");
-}
-catch(error)
-{
-  console.log(error);
-}
+
+
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>console.log("Connected"))
+.catch(console.error)
+
 
 app.listen(process.env.PORT,()=>{
     console.log(`Running Server on ${process.env.PORT}`)
