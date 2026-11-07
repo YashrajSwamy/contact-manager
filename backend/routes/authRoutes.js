@@ -37,7 +37,8 @@ authRouter.post("/register",async (req,res)=>{
             sameSite:"strict"
         })
         res.status(201).json({
-            message:"User Created"
+            message:"User Created",
+            token
         });
     }
     catch(error)
@@ -46,7 +47,7 @@ authRouter.post("/register",async (req,res)=>{
             message:"Internal Server Error"
         });
     }
-})
+});
 
 
 authRouter.post("/login", async (req,res)=>{
@@ -80,7 +81,8 @@ authRouter.post("/login", async (req,res)=>{
             });
 
             res.status(200).json({
-                message:"Logged In"
+                message:"Logged In",
+                token
             });
         }
         else 
@@ -96,6 +98,46 @@ authRouter.post("/login", async (req,res)=>{
             message:"Internal Server Error"
         })
     }
-})
+});
 
+authRouter.post("/logout", (req,res)=>{
+    res.clearCookie('token',{
+        httpOnly:true,
+        sameSite:"strict"
+    });
+    res.status(200).json({
+        message: "Logged out"
+    });
+});
+
+authRouter.get('/me', async (req, res) => {
+    try
+    {
+        const token = req.cookies.token;
+        if(!token)
+        {
+            return res.status(401).json({
+                message:"Not Logged In"
+            })
+        }
+
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
+        const user = await userModel.findById(decoded.id).select('name email');
+
+        if(!user)
+        {
+            return res.status(401).json({
+                message:"User Not Found"
+            })
+        }
+
+        res.status(200).json({ user });
+    }
+    catch(error)
+    {
+        res.status(401).json({
+            message:"Invalid Token"
+        })
+    }
+});
 export default authRouter;

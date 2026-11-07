@@ -13,7 +13,7 @@ const authMiddleware = async (req,res,next) => {
                 message:"Unauthorized"
             });
         }
-
+        
         const decodedJWT = jwt.verify(token,process.env.JWT_SECRET);
 
         const user = await userModel.findById(decodedJWT.id);
