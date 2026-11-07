@@ -37,7 +37,7 @@ const AddContact = () => {
                             type="text"
                             id="name"
                             placeholder="Enter name"
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) =>setName(e.target.value)}
                             value={name}
                             required
                             className='w-full border border-gray-300 rounded-md px-4 py-2.5 mb-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
@@ -47,9 +47,10 @@ const AddContact = () => {
                             type="tel"
                             id="phone"
                             placeholder="Enter phone number"
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={(e) =>setPhone(e.target.value)}
                             value={phone}
                             required
+                            maxLength={10}
                             className='w-full border border-gray-300 rounded-md px-4 py-2.5 mb-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                         />
                         <label htmlFor="email" className='text-base font-medium text-gray-900 mb-1.5'>Email</label>
@@ -57,7 +58,7 @@ const AddContact = () => {
                             type="email"
                             id="email"
                             placeholder="Enter email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) =>setEmail(e.target.value)}
                             value={email}
                             required
                             className='w-full border border-gray-300 rounded-md px-4 py-2.5 mb-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
@@ -67,7 +68,7 @@ const AddContact = () => {
                             type="text"
                             id="address"
                             placeholder="Enter address (optional)"
-                            onChange={(e) => setAddress(e.target.value)}
+                            onChange={(e) =>setAddress(e.target.value)}
                             value={address}
                             className='w-full border border-gray-300 rounded-md px-4 py-2.5 mb-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                         />
